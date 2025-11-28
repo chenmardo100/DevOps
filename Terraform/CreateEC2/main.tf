@@ -54,7 +54,7 @@ resource "aws_key_pair" "new_ec2_key" {
 # EC2 INSTANCE
 ##############################
 resource "aws_instance" "new_ec2" {
-  ami               = "ami-0fa91bc90632c73c9"   # Ubuntu 22.04
+  ami = "ami-04b70fa74e45c3917"   # Ubuntu 22.04
   instance_type     = "t2.micro"
   key_name          = aws_key_pair.new_ec2_key.key_name
   security_groups   = [aws_security_group.dev_sg.name]
