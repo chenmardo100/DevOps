@@ -17,7 +17,7 @@ resource "aws_security_group" "dev_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${chomp(data.http.my_ip.body)}/32"]  # automatically set your IP
+    cidr_blocks = ["${chomp(data.http.my_ip.body)}/32"]
   }
 
   egress {
@@ -33,31 +33,32 @@ resource "tls_private_key" "new_ec2_key" {
   algorithm = "ED25519"
 }
 
+# Upload public key to AWS
 resource "aws_key_pair" "new_ec2_key" {
-  key_name   = "new-ec2-key"
+  key_name   = "new-ec2-key-${timestamp()}"  # unique key name each run
   public_key = tls_private_key.new_ec2_key.public_key_openssh
+}
+
+# Save the private key locally to ~/.ssh so you can SSH
+resource "local_file" "private_key_file" {
+  content          = tls_private_key.new_ec2_key.private_key_pem
+  filename         = "${pathexpand("~/.ssh/new-ec2-key.pem")}"
+  file_permission  = "0600"
 }
 
 # Minimal Ubuntu EC2 instance
 resource "aws_instance" "new_ec2" {
-  ami               = "ami-0fa91bc90632c73c9"  # Ubuntu 22.04 LTS example
+  ami               = "ami-0fa91bc90632c73c9"  # Ubuntu 22.04 LTS
   instance_type     = "t2.micro"
   key_name          = aws_key_pair.new_ec2_key.key_name
   security_groups   = [aws_security_group.dev_sg.name]
-  availability_zone = "us-east-1f"  # optional, specify AZ
 
   tags = {
     Name = "Terraform-Test-EC2"
   }
 }
 
-# Output private key so you can connect
-output "private_key_pem" {
-  value     = tls_private_key.new_ec2_key.private_key_pem
-  sensitive = true
-}
-
-# Output the public IP of the new EC2
+# Output public IP for convenience
 output "new_ec2_public_ip" {
   value = aws_instance.new_ec2.public_ip
 }
