@@ -55,7 +55,7 @@ resource "aws_key_pair" "new_ec2_key" {
 ##############################
 resource "aws_instance" "new_ec2" {
   ami = "ami-04b70fa74e45c3917"   # Ubuntu 22.04
-  instance_type     = "t2.micro"
+  instance_type     = "t3.micro"
   key_name          = aws_key_pair.new_ec2_key.key_name
   security_groups   = [aws_security_group.dev_sg.name]
   availability_zone = "us-east-1f"
