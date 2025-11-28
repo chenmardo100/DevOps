@@ -25,7 +25,7 @@ resource "aws_security_group" "dev_sg" {
     to_port     = 22
     protocol    = "tcp"
     # NEW FIXED VERSION — body deprecated
-    cidr_blocks = [ chomp(data.http.my_ip.response_body) + "/32" ]
+    cidr_blocks = [ tostring(chomp(data.http.my_ip.response_body)) + "/32" ]
   }
 
   egress {
