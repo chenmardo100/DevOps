@@ -24,10 +24,10 @@ resource "aws_security_group" "dev_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    # NEW FIXED VERSION — body deprecated
+    # Fixed deprecated attribute
     cidr_blocks = [
-  format("%s/32", chomp(data.http.my_ip.response_body))
-]
+      format("%s/32", chomp(data.http.my_ip.response_body))
+    ]
   }
 
   egress {
@@ -45,6 +45,21 @@ resource "tls_private_key" "new_ec2_key" {
   algorithm = "ED25519"
 }
 
+# Save private key locally so you can SSH manually
+resource "local_file" "private_key" {
+  content         = tls_private_key.new_ec2_key.private_key_pem
+  filename        = "${pathexpand("~/.ssh/my-new-key")}"
+  file_permission = "0600"
+}
+
+# Save public key locally (optional)
+resource "local_file" "public_key" {
+  content         = tls_private_key.new_ec2_key.public_key_openssh
+  filename        = "${pathexpand("~/.ssh/my-new-key.pub")}"
+  file_permission = "0644"
+}
+
+# AWS key pair
 resource "aws_key_pair" "new_ec2_key" {
   key_name   = "new-ec2-key"
   public_key = tls_private_key.new_ec2_key.public_key_openssh
@@ -54,7 +69,7 @@ resource "aws_key_pair" "new_ec2_key" {
 # EC2 INSTANCE
 ##############################
 resource "aws_instance" "new_ec2" {
-  ami = "ami-04b70fa74e45c3917"   # Ubuntu 22.04
+  ami               = "ami-04b70fa74e45c3917"   # Ubuntu 22.04
   instance_type     = "t3.micro"
   key_name          = aws_key_pair.new_ec2_key.key_name
   security_groups   = [aws_security_group.dev_sg.name]
@@ -68,14 +83,13 @@ resource "aws_instance" "new_ec2" {
 ##############################
 # OUTPUTS
 ##############################
-
-# PRIVATE KEY (use to SSH from first machine → new EC2)
-output "private_key_pem" {
-  value     = tls_private_key.new_ec2_key.private_key_pem
-  sensitive = true
+# Path to the private key (manual SSH)
+output "private_key_path" {
+  description = "Path to the private key to SSH into the new EC2"
+  value       = "~/.ssh/my-new-key"
 }
 
-# PUBLIC IP OF THE NEW EC2
+# Public IP of the new EC2
 output "new_ec2_public_ip" {
   value = aws_instance.new_ec2.public_ip
 }
