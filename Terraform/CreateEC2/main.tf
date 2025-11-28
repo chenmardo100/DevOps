@@ -42,7 +42,8 @@ resource "aws_security_group" "dev_sg" {
 # GENERATE SSH KEYPAIR FOR THE NEW EC2
 ##############################
 resource "tls_private_key" "new_ec2_key" {
-  algorithm = "ED25519"
+  algorithm = "RSA"
+  rsa_bits  = 2048
 }
 
 # Save private key locally so you can SSH manually
