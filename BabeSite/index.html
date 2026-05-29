@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אביה פרימור | גלריית צילומים ואמנות</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- סרגל ניווט עליון -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">AVIYA<span>PRIMOR</span></a></div>
+            <nav class="main-nav">
+                <a href="index.html" class="active">גלריה</a>
+                <a href="about.html">אודות</a>
+                <a href="contact.html">צור קשר</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- אזור פתיחה (Hero) -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>ללכוד את עוצמת הטבע והרגע</h1>
+            <p>צילומי נוף מקוריים, רגעים אורבניים ומהדורות מוגבלות מתוך מבט אישי היישר אל העדשה.</p>
+            <a href="#gallery-section" class="btn-primary">כניסה לגלריה</a>
+        </div>
+    </section>
+
+    <!-- אזור לקט 5 התמונות האינטראקטיביות עם ריצה אוטומטית -->
+    <section class="container accordion-section">
+        <h2 class="section-title">רגעים נבחרים</h2>
+        <div class="featured-accordion" id="accordion-container">
+            
+            <!-- תמונה 1 (מתחילה כפעילה כברירת מחדל) -->
+            <div class="accordion-panel active">
+                <img src="images/photo1.jpg" alt="לקט נבחר 1">
+                <div class="panel-caption">📸 נופים פראיים</div>
+            </div>
+            
+            <!-- תמונה 2 -->
+            <div class="accordion-panel">
+                <img src="images/photo2.jpg" alt="לקט נבחר 2">
+                <div class="panel-caption">🏙️ שקיעה עירונית</div>
+            </div>
+            
+            <!-- תמונה 3 -->
+            <div class="accordion-panel">
+                <img src="images/photo3.jpg" alt="לקט נבחר 3">
+                <div class="panel-caption">🌲 שקט ירוק</div>
+            </div>
+            
+            <!-- תמונה 4 -->
+            <div class="accordion-panel">
+                <img src="images/photo4.jpg" alt="לקט נבחר 4">
+                <div class="panel-caption">⚡ קצב הרחוב</div>
+            </div>
+            
+            <!-- תמונה 5 -->
+            <div class="accordion-panel">
+                <img src="images/photo5.jpg" alt="לקט נבחר 5">
+                <div class="panel-caption">🌊 עוצמת המים</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- גלריית התמונות המלאה -->
+    <main class="container" id="gallery-section">
+        <h2 class="section-title">הגלריה שלי</h2>
+        
+        <!-- סרגל כפתורי הסינון בלייב -->
+        <div class="filter-controls">
+            <button type="button" data-filter="all" class="control-btn control-active">הכל</button>
+            <button type="button" data-filter=".nature" class="control-btn">נופים וטבע</button>
+            <button type="button" data-filter=".urban" class="control-btn">אורבני ואדריכלות</button>
+            <button type="button" data-filter=".moments" class="control-btn">רגעים ואנשים</button>
+        </div>
+        
+        <!-- קונטיינר הגלריה עם מנגנון הסינון -->
+        <div class="gallery-grid" id="gallery-mixer">
+            
+            <!-- פריט גלריה 1 -->
+            <div class="photo-card mix nature">
+                <div class="photo-wrapper">
+                    <a href="images/photo1.jpg" data-fslightbox="gallery" class="lightbox-link">
+                        <img src="images/photo1.jpg" alt="פסגות מושלגות - אביה פרימור" loading="lazy">
+                        <span class="tag">נופים</span>
+                    </a>
+                </div>
+                <div class="photo-info">
+                    <h3>נצח המושלג</h3>
+                    <p class="description">לכידת הרגע הדרמטי שבו השמש פוגשת את הפסגות המושלגות, מתוך סדרת מסעות בטבע הפראי.</p>
+                </div>
+            </div>
+
+            <!-- פריט גלריה 2 -->
+            <div class="photo-card mix urban">
+                <div class="photo-wrapper">
+                    <a href="images/photo2.jpg" data-fslightbox="gallery" class="lightbox-link">
+                        <img src="images/photo2.jpg" alt="רגע אורבני בשקיעה - אביה פרימור" loading="lazy">
+                        <span class="tag">אורבני</span>
+                    </a>
+                </div>
+                <div class="photo-info">
+                    <h3>זהב אורבני</h3>
+                    <p class="description">משחקי קומפוזיציה, השתקפויות וניגודיות חדה ברחובות העיר בשעות דמדומי הערב החמים.</p>
+                </div>
+            </div>
+
+            <!-- פריט גלריה 3 -->
+            <div class="photo-card mix moments">
+                <div class="photo-wrapper">
+                    <a href="images/photo3.jpg" data-fslightbox="gallery" class="lightbox-link">
+                        <img src="images/photo3.jpg" alt="שקט פראי - אביה פרימור" loading="lazy">
+                        <span class="tag">רגעים</span>
+                    </a>
+                </div>
+                <div class="photo-info">
+                    <h3>שקט פראי</h3>
+                    <p class="description">הפרדת אלמנטים מינימליסטית המדגישה את הבדידות המרהיבה והשקט האופף את המרחב הירוק.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- פוטר האתר -->
+    <footer class="site-footer">
+        <p>כל הזכויות שמורות © 2026 | AVIYA PRIMOR</p>
+        <p style="margin-top: 10px;"><a href="https://www.instagram.com/aviya_primor/" target="_blank" class="instagram-link">עקבו באינסטגרם לעדכונים שוטפים 📸</a></p>
+    </footer>
+
+    <!-- סקריפטים חיצוניים להגדלה וסינון -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.4.1/index.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
+    
+    <!-- מנוע סינון הגלריה + מנגנון אקורדיון אוטומטי חכם -->
+    <script>
+        // 1. הפעלת מנוע הסינון MixItUp
+        var mixer = mixitup('#gallery-mixer', {
+            animation: {
+                duration: 400,
+                effects: 'fade scale(0.8)',
+                nudge: false
+            }
+        });
+
+        // 2. לוגיקת מצגת אקורדיון אוטומטית (3 שניות) עם עצירה במעבר עכבר
+        const panels = document.querySelectorAll('.accordion-panel');
+        const container = document.getElementById('accordion-container');
+        let currentIndex = 0;
+        let autoPlayTimer = null;
+        let isHovered = false;
+
+        // פונקציה להעברת התמונה הפעילה במצב אוטומטי
+        function startAutoPlay() {
+            autoPlayTimer = setInterval(() => {
+                if (!isHovered) {
+                    // הסרת קלאס active מכל הפאנלים
+                    panels.forEach(panel => panel.classList.remove('active'));
+                    
+                    // מעבר לתמונה הבאה בלולאה
+                    currentIndex = (currentIndex + 1) % panels.length;
+                    
+                    // הוספת קלאס active לתמונה הנוכחית
+                    panels[currentIndex].classList.add('active');
+                }
+            }, 3000); // 3000 מילישניות = 3 שניות
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayTimer);
+        }
+
+        // האזנה לאירועים על כל פאנל (תמונה)
+        panels.forEach((panel, index) => {
+            // כשהעכבר נכנס לתמונה מסוימת
+            panel.addEventListener('mouseenter', () => {
+                isHovered = true;
+                stopAutoPlay();
+                // מנקה את ה-active מכולם ושם רק על זו שהעכבר עליה
+                panels.forEach(p => p.classList.remove('active'));
+                panel.classList.add('active');
+                currentIndex = index; // מעדכן את האינדקס כדי שהאנימציה תמשיך מכאן
+            });
+        });
+
+        // כשהעכבר יוצא לחלוטין מכל קונטיינר הלקט
+        container.addEventListener('mouseleave', () => {
+            isHovered = false;
+            startAutoPlay();
+        });
+
+        // הפעלה ראשונית של הטיימר כשהאתר עולה
+        startAutoPlay();
+    </script>
+</body>
+</html>
