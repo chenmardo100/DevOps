@@ -35,27 +35,27 @@
         <div class="featured-accordion" id="accordion-container">
             
             <div class="accordion-panel active">
-                <img src="images/image1.jpg" alt="לקט נבחר 1">
+                <img src="images/highlights1.jpg" alt="לקט נבחר 1">
                 <div class="panel-caption">📸 נופים פראיים</div>
             </div>
             
             <div class="accordion-panel">
-                <img src="images/image2.jpg" alt="לקט נבחר 2">
+                <img src="images/highlights2.jpg" alt="לקט נבחר 2">
                 <div class="panel-caption">🏙️ שקיעה עירונית</div>
             </div>
             
             <div class="accordion-panel">
-                <img src="images/image3.jpg" alt="לקט נבחר 3">
+                <img src="images/highlights3.jpg" alt="לקט נבחר 3">
                 <div class="panel-caption">🌲 שקט ירוק</div>
             </div>
             
             <div class="accordion-panel">
-                <img src="images/image4.jpg" alt="לקט נבחר 4">
+                <img src="images/highlights4.jpg" alt="לקט נבחר 4">
                 <div class="panel-caption">⚡ קצב הרחוב</div>
             </div>
             
             <div class="accordion-panel">
-                <img src="images/image5.jpg" alt="לקט נבחר 5">
+                <img src="images/highlights5.jpg" alt="לקט נבחר 5">
                 <div class="panel-caption">🌊 עוצמת המים</div>
             </div>
 
@@ -125,23 +125,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
     
     <script>
-        // 1. הפעלת מנוע הסינון MixItUp
         var mixer = mixitup('#gallery-mixer', {
-            animation: {
-                duration: 400,
-                effects: 'fade scale(0.8)',
-                nudge: false
-            }
+            animation: { duration: 400, effects: 'fade scale(0.8)', nudge: false }
         });
 
-        // 2. לוגיקת מצגת אקורדיון אוטומטית (3 שניות) עם עצירה במעבר עכבר
         const panels = document.querySelectorAll('.accordion-panel');
         const container = document.getElementById('accordion-container');
         let currentIndex = 0;
         let autoPlayTimer = null;
         let isHovered = false;
 
-        // פונקציה להעברת התמונה הפעילה במצב אוטומטי
         function startAutoPlay() {
             autoPlayTimer = setInterval(() => {
                 if (!isHovered) {
@@ -152,11 +145,8 @@
             }, 3000);
         }
 
-        function stopAutoPlay() {
-            clearInterval(autoPlayTimer);
-        }
+        function stopAutoPlay() { clearInterval(autoPlayTimer); }
 
-        // האזנה לאירועים על כל פאנל (תמונה)
         panels.forEach((panel, index) => {
             panel.addEventListener('mouseenter', () => {
                 isHovered = true;
@@ -167,13 +157,11 @@
             });
         });
 
-        // כשהעכבר יוצא לחלוטין מכל קונטיינר הלקט
         container.addEventListener('mouseleave', () => {
             isHovered = false;
             startAutoPlay();
         });
 
-        // הפעלה ראשונית של הטיימר כשהאתר עולה
         startAutoPlay();
     </script>
 </body>
